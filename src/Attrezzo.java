@@ -49,5 +49,5 @@ public class Attrezzo {
 	public String toString() {
 		return this.getNome()+" ("+this.getPeso()+"kg)";
 	}
-
+	//altro commento a caso giusto per vedere se funziona 
 }
