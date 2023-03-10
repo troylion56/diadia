@@ -22,7 +22,7 @@ public class Stanza {
 	private int numeroAttrezzi;
 	private Stanza[] stanzeAdiacenti;
 	private int numeroStanzeAdiacenti;
-	private String[] direzioni;
+	private String[] direzioni;		//è un array di stringhe e indica il numero massimo di dimenzioni che sono 4
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -37,21 +37,17 @@ public class Stanza {
 		this.attrezzi = new Attrezzo[NUMERO_MASSIMO_ATTREZZI];
 	}
 
-	/**
-	 * Imposta una stanza adiacente.
-	 *
-	 * @param direzione direzione in cui sara' posta la stanza adiacente.
-	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
-	 */
+	/*Imposta una stanza adiacente.*/
+	/* prende come input una stringa che rappresenta una direzione e un oggetto Stanza, e cerca di impostare la stanza adiacente nella direzione specificata*/
 	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-		boolean aggiornato = false;					//variabile booleana settata a falso
+		boolean aggiornato = false;					//variabile booleana settata a falso che serve per specificare se è stata trovata la direzione corrispondente
 		for(int i=0; i<this.direzioni.length; i++)	//fino a che i non è= a 4 (hai solo al massimo 4 direzioni vai avanti
 			if (direzione.equals(this.direzioni[i])) {	//se la direzione presa è uguale alla direzione di i 
 				this.stanzeAdiacenti[i] = stanza;		//setta la stanza adiacente 
-				aggiornato = true;
+				aggiornato = true;						//aggiorna la variabile booleana
 			}
-		if (!aggiornato)
-			if (this.numeroStanzeAdiacenti < NUMERO_MASSIMO_DIREZIONI) {
+		if (!aggiornato)								//finche non è aggiornato
+			if (this.numeroStanzeAdiacenti < NUMERO_MASSIMO_DIREZIONI) {	//FINCHE NON è IL NUMERO MASSIMO DI DIREZIONI vengono aggiornate le variabii
 				this.direzioni[numeroStanzeAdiacenti] = direzione;
 				this.stanzeAdiacenti[numeroStanzeAdiacenti] = stanza;
 				this.numeroStanzeAdiacenti++;
@@ -62,11 +58,12 @@ public class Stanza {
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
+	
 	public Stanza getStanzaAdiacente(String direzione) {
-		Stanza stanza = null;
-		for(int i=0; i<this.numeroStanzeAdiacenti; i++)
-			if (this.direzioni[i].equals(direzione))
-				stanza = this.stanzeAdiacenti[i];
+		Stanza stanza = null;		//inizializzala a null 
+		for(int i=0; i<this.numeroStanzeAdiacenti; i++)		//for tutte le direzioni
+			if (this.direzioni[i].equals(direzione))		//se la direzione corrente è uguale a quella del parametro
+				stanza = this.stanzeAdiacenti[i];			//restituisce la stanza adiacente
 		return stanza;
 	}
 
