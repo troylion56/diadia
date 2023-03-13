@@ -12,8 +12,8 @@ import org.junit.Test;
  *
  */
 public class StanzaTest {
-
-	public static void main(String[] args) {
+	@Test 
+	public void testStanza() {
 		Stanza bar = new Stanza("Bar");
 		Stanza mensa = new Stanza("Mensa");
 		bar.impostaStanzaAdiacente("nord", mensa);
