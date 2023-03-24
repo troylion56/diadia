@@ -1,19 +1,10 @@
 package diadia;
-
-
 import java.util.Scanner;
 
-/**
- * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
- * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
- *
- * Questa e' la classe principale crea e istanzia tutte le altre
- *
- * @author  docente di POO 
- *         (da un'idea di Michael Kolling and David J. Barnes) 
- *          
- * @version base
- */
+
+/*Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
+ Per giocare crea un'istanza di questa classe e invoca il letodo gioca
+ Questa e' la classe principale crea e istanzia tutte le altre*/
 
 public class DiaDia {
 
@@ -30,6 +21,8 @@ public class DiaDia {
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
+	private Labirinto labirinto;
+	private Giocatore giocatore;
 
 	public DiaDia() {
 		this.partita = new Partita();
@@ -92,15 +85,15 @@ public class DiaDia {
 		if(direzione==null)
 			System.out.println("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.labirinto.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			System.out.println("Direzione inesistente");
 		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getCfu();
-			this.partita.setCfu(cfu--);
+			this.labirinto.setStanzaCorrente(prossimaStanza);
+			int cfu = this.giocatore.getCfu();
+			this.giocatore.setCfu(cfu--);
 		}
-		System.out.println(partita.getStanzaCorrente().getDescrizione());
+		System.out.println(labirinto.getStanzaCorrente().getDescrizione());
 	}
 
 	/**
