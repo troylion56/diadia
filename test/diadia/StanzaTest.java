@@ -10,6 +10,7 @@ public class StanzaTest {
 	private Stanza s1;
 	private Stanza s2;
 	private Attrezzo a;
+	private Attrezzo b;
 	
 	@Before
 	public void setUp(){
@@ -36,6 +37,17 @@ public class StanzaTest {
 	public void testAttrezzoNellaStanza(){
 		assertTrue(s1.addAttrezzo(a));
 		//assertTrue afferma che il suo argomento è true fallisce se non lo è
-		
+	}
+	
+	@Test 
+	public void testrimuoviAttrezzo1() {
+		s1.addAttrezzo((a));
+		assertTrue(s1.removeAttrezzo("a"));
+	}
+	
+	@Test 
+	public void testrimuoviAttrezzo2() {
+		s1.addAttrezzo((a));
+		assertFalse(s1.removeAttrezzo("b"));
 	}
 }

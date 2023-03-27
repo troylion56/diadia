@@ -85,20 +85,18 @@ public class DiaDia {
 		if(direzione==null)
 			System.out.println("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.labirinto.getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			System.out.println("Direzione inesistente");
 		else {
-			this.labirinto.setStanzaCorrente(prossimaStanza);
-			int cfu = this.giocatore.getCfu();
-			this.giocatore.setCfu(cfu--);
+			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+			int cfu = this.partita.getGiocatore().getCfu();
+			this.partita.getGiocatore().setCfu(cfu--);
 		}
-		System.out.println(labirinto.getStanzaCorrente().getDescrizione());
+		System.out.println(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
 
-	/**
-	 * Comando "Fine".
-	 */
+	/* Comando "Fine".*/
 	private void fine() {
 		System.out.println("Grazie di aver giocato!");  // si desidera smettere
 	}
