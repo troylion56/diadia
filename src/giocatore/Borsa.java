@@ -1,8 +1,10 @@
-package diadia;
+package giocatore;
+
+import attrezzi.Attrezzo;
 
 public class Borsa {
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
-	private Attrezzo[] attrezzi;
+	public Attrezzo[] attrezzi;
 	private int numeroAttrezzi;
 	private int pesoMax;
 	public Borsa() {
@@ -54,7 +56,9 @@ public class Borsa {
 		for(int i=0;i<attrezzi.length;i++) {
 			if(attrezzi[i]!=null && nomeAttrezzo.equals(attrezzi[i].getNome())){
 				a=attrezzi[i];
-				attrezzi[i]=null;
+				attrezzi[i]=attrezzi[numeroAttrezzi-1];
+//				attrezzi[numeroAttrezzi-1] = null;		// puoi pure non farlo
+				numeroAttrezzi--;
 				return a;
 			}
 		}

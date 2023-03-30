@@ -1,4 +1,4 @@
-package diadia;
+package giocatore;
 
 public class Giocatore {
 	

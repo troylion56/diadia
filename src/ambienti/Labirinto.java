@@ -1,4 +1,6 @@
-package diadia;
+package ambienti;
+
+import attrezzi.Attrezzo;
 
 public class Labirinto {
 	private Stanza stanzaCorrente;

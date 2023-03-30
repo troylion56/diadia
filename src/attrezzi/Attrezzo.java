@@ -1,6 +1,7 @@
-package diadia;
+package attrezzi;
 		//commento a caso per vedere se funziona i commit
 
+import ambienti.Stanza;
 
 /**			//bishoy gay
  * Una semplice classe che modella un attrezzo.

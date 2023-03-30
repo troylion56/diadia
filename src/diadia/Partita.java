@@ -1,5 +1,8 @@
 package diadia;
 
+import ambienti.Labirinto;
+import giocatore.Giocatore;
+
 public class Partita {
 
 	private Labirinto labirinto;

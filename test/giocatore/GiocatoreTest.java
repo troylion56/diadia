@@ -1,8 +1,10 @@
-package diadia;
+package giocatore;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import giocatore.Giocatore;
 
 public class GiocatoreTest {
 

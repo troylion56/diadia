@@ -1,6 +1,11 @@
 package diadia;
 import java.util.Scanner;
 
+import ambienti.Labirinto;
+import ambienti.Stanza;
+import giocatore.Borsa;
+import giocatore.Giocatore;
+
 
 /*Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  Per giocare crea un'istanza di questa classe e invoca il letodo gioca
@@ -18,11 +23,13 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"aiuto", "vai", "fine", "prendi", "posa"};
 
 	private Partita partita;
 	private Labirinto labirinto;
 	private Giocatore giocatore;
+	private Borsa borsa;
+	private Stanza stanza;
 
 	public DiaDia() {
 		this.partita = new Partita();
@@ -38,14 +45,11 @@ public class DiaDia {
 			istruzione = scannerDiLinee.nextLine();
 		while (!processaIstruzione(istruzione));
 		scannerDiLinee.close();
-	}   
-
-
-	/**
+	}
+	/*
 	 * Processa una istruzione 
 	 *
-	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
-	 */
+	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti*/
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
 
@@ -56,6 +60,10 @@ public class DiaDia {
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome() != null && comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
+		else if(comandoDaEseguire.getNome()!=null && comandoDaEseguire.getNome().equals("posa"))
+			this.posa(comandoDaEseguire.getParametro());
+		else if(comandoDaEseguire.getNome()!=null && comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
 		else
 			System.out.println("Comando sconosciuto");
 
@@ -66,21 +74,16 @@ public class DiaDia {
 			return false;
 	}   
 
-	// implementazioni dei comandi dell'utente:
 
-	/**
-	 * Stampa informazioni di aiuto.
-	 */
+	/*Stampa informazioni di aiuto*/
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++) 
 			System.out.print(elencoComandi[i]+" ");
 		System.out.println();
 	}
 
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
+	/*Cerca di andare in una direzione. Se c'e' una stanza ci entra 
+	 *e ne stampa il nome, altrimenti stampa un messaggio di errore*/
 	private void vai(String direzione) {
 		if(direzione==null)
 			System.out.println("Dove vuoi andare ?");
@@ -94,6 +97,23 @@ public class DiaDia {
 			this.partita.getGiocatore().setCfu(cfu--);
 		}
 		System.out.println(partita.getLabirinto().getStanzaCorrente().getDescrizione());
+	}
+	public void posa(String attrezzoDaPosare) {
+		if(attrezzoDaPosare==null)
+			System.out.println("cosa vuoi posare?");
+		if(this.borsa.attrezzi!=null) {
+			this.borsa.removeAttrezzo(attrezzoDaPosare);
+			System.out.println("ho rimosso : " + attrezzoDaPosare);
+		}
+	}
+	
+	public void prendi(String attrezzoDaPrendere) {
+		if(attrezzoDaPrendere==null)
+			System.out.println("cosa vuoi posare?");
+		if(this.stanza.attrezzi!=null) {
+			this.stanza.getAttrezzo(attrezzoDaPrendere);
+			System.out.println("Ho preso l'attrezzo : " + attrezzoDaPrendere);
+		}
 	}
 
 	/* Comando "Fine".*/

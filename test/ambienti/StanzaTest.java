@@ -1,9 +1,12 @@
-package diadia;
+package ambienti;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ambienti.Stanza;
+import attrezzi.Attrezzo;
 
 public class StanzaTest {
 	
