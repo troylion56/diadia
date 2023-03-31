@@ -151,9 +151,14 @@ public class Stanza {
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo attrezzoCercato;
 		attrezzoCercato = null;
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
-				attrezzoCercato = attrezzo;
+		if(nomeAttrezzo==null) {
+			System.out.println("non hai inserito nessun attrezzo");
+		}
+		else {
+			for (Attrezzo attrezzo : this.attrezzi) {
+				if (attrezzo.getNome().equals(nomeAttrezzo))
+					attrezzoCercato = attrezzo;
+			}
 		}
 		return attrezzoCercato;	
 	}

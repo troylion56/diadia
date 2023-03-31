@@ -4,7 +4,7 @@ import attrezzi.Attrezzo;
 
 public class Borsa {
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
-	public Attrezzo[] attrezzi;
+	private Attrezzo[] attrezzi;
 	private int numeroAttrezzi;
 	private int pesoMax;
 	public Borsa() {
@@ -32,9 +32,20 @@ public class Borsa {
 		for (int i= 0; i<this.numeroAttrezzi; i++)
 			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
 				a = attrezzi[i];
-
 		return a;
 	}
+	
+	public boolean getAttrezzoBoole(String nomeAttrezzo) {
+		boolean present=false;
+		for (int i= 0; i<this.numeroAttrezzi; i++)
+			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+				present=true;
+		return present;
+	}
+	public int getNumeroAttrezzi() {
+		return this.numeroAttrezzi;
+	}
+	
 	public int getPeso() {
 		int peso = 0;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -49,21 +60,27 @@ public class Borsa {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
 	
+	
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		if(nomeAttrezzo==null)
 			return a;
-		for(int i=0;i<attrezzi.length;i++) {
-			if(attrezzi[i]!=null && nomeAttrezzo.equals(attrezzi[i].getNome())){
-				a=attrezzi[i];
-				attrezzi[i]=attrezzi[numeroAttrezzi-1];
-//				attrezzi[numeroAttrezzi-1] = null;		// puoi pure non farlo
-				numeroAttrezzi--;
-				return a;
+		else {
+			for(int i=0;i<attrezzi.length;i++) {
+				if(attrezzi[i]!=null && nomeAttrezzo.equals(attrezzi[i].getNome())){
+					a=attrezzi[i];
+					attrezzi[i]=attrezzi[numeroAttrezzi-1];
+					//				attrezzi[numeroAttrezzi-1] = null;		// puoi pure non farlo
+					numeroAttrezzi--;
+					return a;
+				}
 			}
 		}
 		return a;
+
 	}
+	
+	
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 

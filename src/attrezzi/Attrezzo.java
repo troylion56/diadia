@@ -3,16 +3,11 @@ package attrezzi;
 
 import ambienti.Stanza;
 
-/**			//bishoy gay
+/*
  * Una semplice classe che modella un attrezzo.
  * Gli attrezzi possono trovarsi all'interno delle stanze
  * del labirinto.
- * Ogni attrezzo ha un nome ed un peso.
- *
- * @author  docente di POO
- * @see Stanza
- * @version base
- */
+ * Ogni attrezzo ha un nome ed un peso*/
 public class Attrezzo {
 
 	private String nome;
