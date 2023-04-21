@@ -29,12 +29,11 @@ public class DiaDia {
 	
 	public DiaDia (IOConsole console) {
 		this.io=console;
-		this.partita=new Partita();
+		this.partita=new Partita(io);
 	}
 
 	public void gioca() {
 		String istruzione; 
-
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
 		do		
 			istruzione = io.leggiRiga();

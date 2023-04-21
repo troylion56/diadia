@@ -8,12 +8,14 @@ public class Partita {
 	private Labirinto labirinto;
 	private Giocatore giocatore;
 	private boolean finita;
+	private IOConsole io;
 	
 	
-	public Partita(){
+	public Partita(IOConsole io){
 		labirinto= new Labirinto();
 		giocatore= new Giocatore();
 		labirinto.creaStanze();
+		this.io=io;
 		this.finita = false;
 	}
 	
@@ -47,6 +49,14 @@ public class Partita {
 	/*Imposta la partita come finita*/
 	public void setFinita() {
 		this.finita = true;
+	}
+
+	public IOConsole getIo() {
+		return io;
+	}
+
+	public void setIo(IOConsole io) {
+		this.io = io;
 	}
 
 	
