@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import ambienti.Stanza;
 import attrezzi.Attrezzo;
+import comandi.Comando;
 
 
 
@@ -22,8 +23,6 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"aiuto", "vai", "fine", "prendi", "posa"};
-
 	private Partita partita;
 	private IOConsole io;
 	
@@ -40,43 +39,18 @@ public class DiaDia {
 			istruzione = io.leggiRiga();
 		while (!processaIstruzione(istruzione));
 	}
-	
-	
-	/*************************************************************************************************/
-	/*Processa una istruzione return true se l'istruzione e' eseguita e il gioco continua, false altrimenti*/
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire = new Comando(istruzione);
-
-		if (comandoDaEseguire.getNome() != null && comandoDaEseguire.getNome().equals("fine")) {
-			this.fine(); 
-			return true;
-		} else if (comandoDaEseguire.getNome() != null && comandoDaEseguire.getNome().equals("vai"))
-			this.vai(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome() != null && comandoDaEseguire.getNome().equals("aiuto"))
-			this.aiuto();
-		else if(comandoDaEseguire.getNome()!=null && comandoDaEseguire.getNome().equals("posa"))
-			this.posa(comandoDaEseguire.getParametro());
-		else if(comandoDaEseguire.getNome()!=null && comandoDaEseguire.getNome().equals("prendi"))
-			this.prendi(comandoDaEseguire.getParametro());
-		else
-			System.out.println("Comando sconosciuto");
-
-		if (this.partita.vinta()) {
+		Comando comandoDaEseguire;
+		FabbricaDiComandiFisarmonica factory = new FabbricaDiComandiFisarmonica();
+				comandoDaEseguire = factory.costruisciComando(istruzione);
+		comandoDaEseguire.esegui(this.partita);
+		if (this.partita.vinta())
 			System.out.println("Hai vinto!");
-			return true;
-		} else
-			return false;
+		if (!this.partita.giocatoreIsVivo())
+			System.out.println("Hai esaurito i CFU...");
+		return this.partita.isFinita();
 	}
-	/*************************************************************************************************/
 
-	/*************************************************************************************************/
-	/*Stampa informazioni di aiuto*/
-	private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			io.mostraMessaggio(elencoComandi[i]+" ");
-		io.mostraMessaggio("");
-	}
-	/*************************************************************************************************/
 
 	/*************************************************************************************************/
 	/*Cerca di andare in una direzione. Se c'e' una stanza ci entra  e ne stampa il nome, altrimenti stampa un messaggio di errore*/

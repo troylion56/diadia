@@ -49,5 +49,11 @@ public class Partita {
 		this.finita = true;
 	}
 
+	public boolean giocatoreIsVivo() {
+		if(giocatore.getCfu()==0)
+			return false;
+		return true;
+	}
+
 	
 }
