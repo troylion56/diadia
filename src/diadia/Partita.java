@@ -1,14 +1,14 @@
 package diadia;
 
 import ambienti.Labirinto;
+import ambienti.Stanza;
 import giocatore.Giocatore;
 
 public class Partita {
-
+	
 	private Labirinto labirinto;
 	private Giocatore giocatore;
 	private boolean finita;
-	
 	
 	public Partita(){
 		labirinto= new Labirinto();
@@ -53,6 +53,14 @@ public class Partita {
 		if(giocatore.getCfu()==0)
 			return false;
 		return true;
+	}
+	
+	public void setStanzaCorrente(Stanza stanzacorrente) {
+		this.getLabirinto().setStanzaCorrente(stanzacorrente);	
+	}
+	
+	public Stanza getStanzaCorrente() {
+		return this.getLabirinto().getStanzaCorrente();
 	}
 
 	

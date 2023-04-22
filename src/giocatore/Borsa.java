@@ -10,11 +10,16 @@ public class Borsa {
 	public Borsa() {
 		this(DEFAULT_PESO_MAX_BORSA);
 	}
+	
+	/************************COSTRUTTORE DI BORSA********************************/
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
+	/****************************************************************************/
+	
+	/***************************METODI SUGLI ATTREZZI****************************/
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
@@ -24,9 +29,7 @@ public class Borsa {
 		this.numeroAttrezzi++;
 		return true;
 	}
-	public int getPesoMax() {
-		return pesoMax;
-	}
+	
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -34,32 +37,13 @@ public class Borsa {
 				a = attrezzi[i];
 		return a;
 	}
-	
-	public boolean getAttrezzoBoole(String nomeAttrezzo) {
-		boolean present=false;
-		for (int i= 0; i<this.numeroAttrezzi; i++)
-			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
-				present=true;
-		return present;
-	}
-	public int getNumeroAttrezzi() {
-		return this.numeroAttrezzi;
-	}
-	
-	public int getPeso() {
-		int peso = 0;
-		for (int i= 0; i<this.numeroAttrezzi; i++)
-			peso += this.attrezzi[i].getPeso();
-
-		return peso;
-	}
-	public boolean isEmpty() {
-		return this.numeroAttrezzi == 0;
-	}
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
 	
+	public int getNumeroAttrezzi() {
+		return this.numeroAttrezzi;
+	}
 	
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
@@ -77,9 +61,34 @@ public class Borsa {
 			}
 		}
 		return a;
-
 	}
 	
+	/****************************************************************************/
+	
+	
+	/***********************************METODI PER VEDERE IL PESO***************/
+	public int getPesoMax() {
+		return pesoMax;
+	}
+	
+	public int getPeso() {
+		int peso = 0;
+		for (int i= 0; i<this.numeroAttrezzi; i++)
+			peso += this.attrezzi[i].getPeso();
+
+		return peso;
+	}
+	
+	public boolean getPesoRimanente(Attrezzo nomeAttrezzo) {
+		if(nomeAttrezzo!=null && this.getPesoMax()-this.getPeso()>=nomeAttrezzo.getPeso())
+			return true;
+		return false;
+	}
+	
+	public boolean isEmpty() {
+		return this.numeroAttrezzi == 0;
+	}
+	/****************************************************************************/
 	
 	public String toString() {
 		StringBuilder s = new StringBuilder();

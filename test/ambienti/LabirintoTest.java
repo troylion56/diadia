@@ -37,10 +37,8 @@ public class LabirintoTest {
 	@Test
 	public void testGetStanzaCorrente() {
 		assertEquals("Atrio", l.getStanzaCorrente().getNome());
-	}@Test
-	public void test() {
-		fail("Not yet implemented");
 	}
+	
 
 
 

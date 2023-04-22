@@ -1,5 +1,4 @@
 package ambienti;
-
 import attrezzi.Attrezzo;
 
 /**
@@ -181,12 +180,14 @@ public class Stanza {
 		return false;
 	}
 
-
 	public String[] getDirezioni() {
 		String[] direzioni = new String[this.numeroStanzeAdiacenti];
 		for(int i=0; i<this.numeroStanzeAdiacenti; i++)
 			direzioni[i] = this.direzioni[i];
 		return direzioni;
 	}
-
+	
+	public int getNumeroAttrezziPossibili() {
+		return NUMERO_MASSIMO_ATTREZZI-this.numeroAttrezzi;
+	}
 }

@@ -1,17 +1,17 @@
-package diadia;
+package comandi;
 
 import java.util.Scanner;
 
-import comandi.Comando;
-import comandi.ComandoAiuto;
-import comandi.ComandoFine;
-import comandi.ComandoGuarda;
-import comandi.ComandoNonValido;
-import comandi.ComandoPosa;
-import comandi.ComandoPrendi;
-import comandi.ComandoVai;
+import diadia.IO;
+import diadia.IOConsole;
 
 public class FabbricaDiComandiFisarmonica {
+	
+	private IO io;
+	public FabbricaDiComandiFisarmonica(IO io) {
+		this.io=io;
+	}
+	
 	public Comando costruisciComando(String istruzione) {
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
@@ -38,6 +38,7 @@ public class FabbricaDiComandiFisarmonica {
 			comando = new ComandoGuarda();
 		else comando = new ComandoNonValido();
 		comando.setParametro(parametro);
+		comando.setIo(this.io);
 		return comando;
 	}
 }
