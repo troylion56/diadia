@@ -1,5 +1,7 @@
 package ambienti;
 
-public class StanzaMagicaProtected extends StanzaProtected{
+import attrezzi.Attrezzo;
+
+public class StanzaMagicaProtected extends StanzaProtected {
 
 }
