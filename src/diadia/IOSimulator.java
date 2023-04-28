@@ -1,44 +1,43 @@
 package diadia;
 
+/*creamo questa classe per disaccoppiare l'input e output*/
 public class IOSimulator implements IO {
 
-	private String[] righeLette;
-	private int indiceRigheLette;
-
-	public String[] getMessaggiProdotti() {
-		return messaggiProdotti;
-	}
-
-	public void setMessaggiProdotti(String[] messaggiProdotti) {
-		this.messaggiProdotti = messaggiProdotti;
-	}
-
+	private String[] righeDaLeggere;
+	private int indiceRigheDaLeggere;
 	private String[] messaggiProdotti;
 	private int indiceMessaggiProdotti;
 	private int indiceMessaggiMostrati;
 
+
 	public IOSimulator(String[] righeDaLeggere) {
-		this.righeLette = righeDaLeggere;
-		this.indiceRigheLette = 0;
-		this.indiceMessaggiMostrati = 0;
-		this.messaggiProdotti = new String[42*23];
-	}
-
-	@Override
-	public String leggiRiga() {
-		String riga = null;
-
-		riga = this.righeLette[indiceRigheLette];
-		this.indiceRigheLette++;
-		return riga;
+		this.righeDaLeggere = righeDaLeggere;
+		this.indiceRigheDaLeggere = 0;
+		this.messaggiProdotti=new String[100];
+		this.indiceMessaggiProdotti=0;
+		this.indiceMessaggiMostrati=0;
+		
 	}
 
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		// TODO Auto-generated method stub
-		
+		this.messaggiProdotti[this.indiceMessaggiProdotti]= messaggio;
+		this.indiceMessaggiProdotti++;	
 	}
 
-
-
+	@Override
+	public String leggiRiga() {
+		String rigaLetta = this.righeDaLeggere[this.indiceRigheDaLeggere];
+		this.indiceRigheDaLeggere++;
+		return rigaLetta;
+	}
+	
+	public String nextMessaggio() {
+		String next=this.messaggiProdotti[this.indiceMessaggiMostrati];
+		this.indiceMessaggiMostrati++;
+		return next;
+	}
+	public boolean hasNExtMEssaggio() {
+		return this.indiceMessaggiMostrati <this.indiceMessaggiProdotti;
+	}
 }

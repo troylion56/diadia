@@ -6,7 +6,7 @@ import diadia.Partita;
 
 public class ComandoFine implements Comando {
 	
-	private final static String nome= "fine";
+	public final static String nome= "fine";
 	private IO io;
 	@Override
 	public void esegui(Partita partita) {

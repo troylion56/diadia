@@ -13,7 +13,7 @@ import attrezzi.Attrezzo;
  */
 
 public class Stanza {
-
+	
 	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
 	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 
@@ -23,6 +23,7 @@ public class Stanza {
 	private Stanza[] stanzeAdiacenti;
 	private int numeroStanzeAdiacenti;
 	private String[] direzioni;		//è un array di stringhe e indica il numero massimo di dimenzioni che sono 4
+	private Stanza stanzaCorrente;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -35,6 +36,9 @@ public class Stanza {
 		this.direzioni = new String[NUMERO_MASSIMO_DIREZIONI];
 		this.stanzeAdiacenti = new Stanza[NUMERO_MASSIMO_DIREZIONI];
 		this.attrezzi = new Attrezzo[NUMERO_MASSIMO_ATTREZZI];
+	}
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.stanzaCorrente = stanzaCorrente;
 	}
 
 	/*Imposta una stanza adiacente.*/
@@ -190,4 +194,5 @@ public class Stanza {
 	public int getNumeroAttrezziPossibili() {
 		return NUMERO_MASSIMO_ATTREZZI-this.numeroAttrezzi;
 	}
+	
 }
